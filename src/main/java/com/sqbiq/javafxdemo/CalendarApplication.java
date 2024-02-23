@@ -13,7 +13,7 @@ import java.io.IOException;
 public class CalendarApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        GridPane root = new Calendar();
+        Calendar root = new Calendar();
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
