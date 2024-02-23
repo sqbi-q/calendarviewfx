@@ -26,7 +26,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.sqbiq.javafxdemo'
-    mainClass = 'com.sqbiq.javafxdemo.HelloApplication'
+    mainClass = 'com.sqbiq.javafxdemo.CalendarApplication'
 }
 
 javafx {
