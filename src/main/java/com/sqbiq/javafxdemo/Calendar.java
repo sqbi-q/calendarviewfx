@@ -4,11 +4,16 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
+import java.time.DayOfWeek;
+import java.time.format.TextStyle;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
+
 public class Calendar extends GridPane {
     static final int ROWS_COUNT = 1 /*header*/ + 4 /*weeks*/;
     static final int COLS_COUNT = 7 /*days of week*/;
     public Calendar() {
-        initHeaderRow();
+        initDaysOfWeekRow();
         initGrid();
     }
 
@@ -18,13 +23,14 @@ public class Calendar extends GridPane {
         return cell;
     }
 
-    private void initHeaderRow() {
-        final String[] days = {"Pn", "Wt", "Śr", "Cz", "Pt", "Sb", "Nd"};
-        int i = 0;
-        for (String day : days) {
-            Button cell = new Button(day);
+    private void initDaysOfWeekRow() {
+        final WeekFields daysOfWeek = WeekFields.of(Locale.FRANCE);
+        DayOfWeek day = daysOfWeek.getFirstDayOfWeek();
+        // for every week day
+        for (int i = 0; i < 7; i++) {
+            Button cell = new Button(day.getDisplayName(TextStyle.SHORT, Locale.getDefault()));
             add(cell, i, 0);
-            i++;
+            day = day.plus(1);
         }
     }
 
