@@ -9,24 +9,16 @@ import java.time.Year;
 public class YearSelect extends HBox {
     final private Button previous = new Button();
     final private Button next = new Button();
-    private Year yearValue;
-    final private TextField yearField = new TextField();
+    final private YearField yearField;
 
     public YearSelect(Year defaultYear) {
         previous.setText("<");
         getChildren().add(previous);
 
-        yearValue = defaultYear;
-
-        yearField.setText(yearValue.toString());
+        yearField = new YearField(defaultYear);
         getChildren().add(yearField);
 
         next.setText(">");
         getChildren().add(next);
-    }
-
-    public void setYear(Year year) {
-        yearValue = year;
-        yearField.setText(yearValue.toString());
     }
 }
