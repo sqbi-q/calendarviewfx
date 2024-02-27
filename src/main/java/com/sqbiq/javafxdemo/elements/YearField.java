@@ -4,10 +4,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.EventListener;
+import java.util.List;
 
 public class YearField extends TextField {
 
     private Year yearValue;
+    private final List<ValueChangeListener> valueChangeListeners = new ArrayList<>();
 
     static private TextFormatter<String> yearTextFormatter = new TextFormatter<>(change -> {
         if (change.isAdded()) {
@@ -23,11 +27,15 @@ public class YearField extends TextField {
         return change;
     });
 
+    public interface ValueChangeListener extends EventListener {
+        void changed();
+    }
+
     public YearField(Year defaultYear) {
         setTextFormatter(yearTextFormatter);
 
         yearValue = defaultYear;
-        updateText();
+        updateYearValue();
 
         // on mouse click always focus and select year for faster input
         setOnMouseClicked(mouse -> {
@@ -44,13 +52,24 @@ public class YearField extends TextField {
         // when unfocused use last set year
         focusedProperty().addListener((obs, wasFocused, focused) -> {
             if (!focused) {
-                updateText();
+                updateYearValue();
             }
         });
     }
 
-    private void updateText() {
+    private void updateYearValue() {
         setText(yearValue.toString());
+
+        // notify on year change to update calendar
+        valueChangeListeners.forEach(listener -> listener.changed());
+    }
+
+    public void addValueChangeListener(ValueChangeListener onValueChange) {
+        valueChangeListeners.add(onValueChange);
+    }
+
+    public void removeValueChangeListener(ValueChangeListener onValueChange) {
+        valueChangeListeners.remove(onValueChange);
     }
 
     public Year getValue() {
@@ -59,12 +78,12 @@ public class YearField extends TextField {
 
     public void previous() {
         yearValue = yearValue.minusYears(1);
-        updateText();
+        updateYearValue();
     }
 
     public void next() {
         yearValue = yearValue.plusYears(1);
-        updateText();
+        updateYearValue();
     }
 
     @Override

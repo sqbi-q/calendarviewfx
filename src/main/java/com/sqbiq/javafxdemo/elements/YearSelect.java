@@ -37,11 +37,11 @@ public class YearSelect extends HBox {
         return yearField.getValue();
     }
 
-    public void addValueChangedListener(ChangeListener onValueChanged) {
-        yearField.textProperty().addListener(onValueChanged);
+    public void addValueChangedListener(YearField.ValueChangeListener onValueChanged) {
+        yearField.addValueChangeListener(onValueChanged);
     }
 
-    public void removeValueChangedListener(ChangeListener onValueChanged) {
-        yearField.textProperty().removeListener(onValueChanged);
+    public void removeValueChangedListener(YearField.ValueChangeListener onValueChanged) {
+        yearField.removeValueChangeListener(onValueChanged);
     }
 }

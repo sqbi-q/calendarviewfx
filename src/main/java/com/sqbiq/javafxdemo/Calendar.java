@@ -36,8 +36,7 @@ public class Calendar extends VBox {
         getChildren().add(calendarGrid);
 
         // on year or month change update date displayed on grid
-        yearSelect.addValueChangedListener(
-                (obs, oldVal, newVal) -> updateDate());
+        yearSelect.addValueChangedListener(this::updateDate);
         monthSelect.valueProperty().addListener(
                 (obs, oldVal, newVal) -> updateDate());
     }
