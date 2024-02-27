@@ -22,13 +22,12 @@ public class CalendarGrid extends GridPane {
     final WeekFields daysOfWeek = WeekFields.of(daysOfWeekLocale);
 
     public CalendarGrid() {
-        initDaysOfWeekRow();
-        initGrid();
+        drawCells();
     }
 
     public void setDate(YearMonth yearMonth) {
         date = yearMonth;
-        initGrid();
+        drawCells();
     }
 
     public void setDisplayLocale(Locale locale) { displayLocale = locale; }
@@ -38,6 +37,12 @@ public class CalendarGrid extends GridPane {
         Button cell = new Button(text);
         cell.setMaxWidth(Double.MAX_VALUE);
         return cell;
+    }
+
+    private void drawCells() {
+        getChildren().clear();
+        initDaysOfWeekRow();
+        initGrid();
     }
 
     private void initDaysOfWeekRow() {
