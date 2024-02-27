@@ -27,7 +27,7 @@ public class YearField extends TextField {
         setTextFormatter(yearTextFormatter);
 
         yearValue = defaultYear;
-        setText(yearValue.toString());
+        updateText();
 
         // on mouse click always focus and select year for faster input
         setOnMouseClicked(mouse -> {
@@ -44,9 +44,23 @@ public class YearField extends TextField {
         // when unfocused use last set year
         focusedProperty().addListener((obs, wasFocused, focused) -> {
             if (!focused) {
-                setText(yearValue.toString());
+                updateText();
             }
         });
+    }
+
+    private void updateText() {
+        setText(yearValue.toString());
+    }
+
+    public void previous() {
+        yearValue = yearValue.minusYears(1);
+        updateText();
+    }
+
+    public void next() {
+        yearValue = yearValue.plusYears(1);
+        updateText();
     }
 
     @Override

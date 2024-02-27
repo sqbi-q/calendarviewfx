@@ -20,5 +20,11 @@ public class YearSelect extends HBox {
 
         next.setText(">");
         getChildren().add(next);
+
+        // on click go back one year
+        previous.setOnAction(action -> yearField.previous());
+
+        // on click go forward one year
+        next.setOnAction(action -> yearField.next());
     }
 }
