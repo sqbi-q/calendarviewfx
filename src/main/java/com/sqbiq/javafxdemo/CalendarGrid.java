@@ -15,7 +15,11 @@ public class CalendarGrid extends GridPane {
     static final int ROWS_COUNT = 1 /*header*/ + 5 /*weeks*/;
     static final int COLS_COUNT = 7 /*days of week*/;
     private YearMonth date = YearMonth.now();
-    final WeekFields daysOfWeek = WeekFields.of(Locale.FRANCE);
+
+    private Locale displayLocale = Locale.getDefault();
+    private Locale daysOfWeekLocale = Locale.getDefault();
+
+    final WeekFields daysOfWeek = WeekFields.of(daysOfWeekLocale);
 
     public CalendarGrid() {
         initDaysOfWeekRow();
@@ -27,6 +31,9 @@ public class CalendarGrid extends GridPane {
         initGrid();
     }
 
+    public void setDisplayLocale(Locale locale) { displayLocale = locale; }
+    public void setDaysOfWeekLocale(Locale locale) { daysOfWeekLocale = locale; }
+
     static private Button getCell(String text) {
         Button cell = new Button(text);
         cell.setMaxWidth(Double.MAX_VALUE);
@@ -37,7 +44,7 @@ public class CalendarGrid extends GridPane {
         DayOfWeek day = daysOfWeek.getFirstDayOfWeek();
         // for every week day
         for (int i = 0; i < 7; i++) {
-            Button cell = new Button(day.getDisplayName(TextStyle.SHORT, Locale.getDefault()));
+            Button cell = new Button(day.getDisplayName(TextStyle.SHORT, displayLocale));
             add(cell, i, 0);
             day = day.plus(1);
         }
