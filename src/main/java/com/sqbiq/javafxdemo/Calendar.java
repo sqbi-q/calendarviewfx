@@ -29,6 +29,9 @@ public class Calendar extends VBox {
         monthSelect.getItems().addAll(months);
         getChildren().add(monthSelect);
 
+        // select default month
+        monthSelect.getSelectionModel().select(new MonthItem(date.getMonth(), Locale.getDefault()));
+
         calendarGrid.setDate(date);
         getChildren().add(calendarGrid);
 
