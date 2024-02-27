@@ -16,11 +16,11 @@ import java.util.Locale;
 public class Calendar extends VBox {
     private YearMonth date = YearMonth.now();
     private CalendarGrid calendarGrid = new CalendarGrid();
-    private YearSelect yearHeader = new YearSelect(Year.from(date));
+    private YearSelect yearSelect = new YearSelect(Year.from(date));
     private ComboBox<MonthItem> monthSelect = new ComboBox<MonthItem>();
 
     public Calendar() {
-        getChildren().add(yearHeader);
+        getChildren().add(yearSelect);
 
         List<MonthItem> months = Arrays.stream(Month.values())
                 .map(month -> new MonthItem(month, Locale.getDefault()))
@@ -31,5 +31,18 @@ public class Calendar extends VBox {
 
         calendarGrid.setDate(date);
         getChildren().add(calendarGrid);
+
+        // on year or month change update date displayed on grid
+        yearSelect.addValueChangedListener(
+                (obs, oldVal, newVal) -> updateDate());
+        monthSelect.valueProperty().addListener(
+                (obs, oldVal, newVal) -> updateDate());
+    }
+
+    private void updateDate() {
+        Month selectedMonth = monthSelect.getValue().getValue();
+        Year selectedYear = yearSelect.getValue();
+        YearMonth selectedDate = YearMonth.of(selectedYear.getValue(), selectedMonth);
+        calendarGrid.setDate(selectedDate);
     }
 }

@@ -53,6 +53,10 @@ public class YearField extends TextField {
         setText(yearValue.toString());
     }
 
+    public Year getValue() {
+        return yearValue;
+    }
+
     public void previous() {
         yearValue = yearValue.minusYears(1);
         updateText();

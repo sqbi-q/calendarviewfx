@@ -1,5 +1,6 @@
 package com.sqbiq.javafxdemo.elements;
 
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -22,9 +23,25 @@ public class YearSelect extends HBox {
         getChildren().add(next);
 
         // on click go back one year
-        previous.setOnAction(action -> yearField.previous());
+        previous.setOnAction(action -> {
+            yearField.previous();
+        });
 
         // on click go forward one year
-        next.setOnAction(action -> yearField.next());
+        next.setOnAction(action -> {
+            yearField.next();
+        });
+    }
+
+    public Year getValue() {
+        return yearField.getValue();
+    }
+
+    public void addValueChangedListener(ChangeListener onValueChanged) {
+        yearField.textProperty().addListener(onValueChanged);
+    }
+
+    public void removeValueChangedListener(ChangeListener onValueChanged) {
+        yearField.textProperty().removeListener(onValueChanged);
     }
 }
