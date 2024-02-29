@@ -28,7 +28,7 @@ public class Calendar extends VBox {
         getChildren().add(yearSelect);
 
         List<MonthItem> months = Arrays.stream(Month.values())
-                .map(month -> new MonthItem(month, Locale.getDefault()))
+                .map(month -> new MonthItem(month, calendarGrid.getDisplayLocale()))
                 .toList();
 
         monthSelect.getStyleClass().add("month-select");
@@ -36,7 +36,7 @@ public class Calendar extends VBox {
         getChildren().add(monthSelect);
 
         // select default month
-        monthSelect.getSelectionModel().select(new MonthItem(date.getMonth(), Locale.getDefault()));
+        monthSelect.getSelectionModel().select(new MonthItem(date.getMonth(), calendarGrid.getDisplayLocale()));
 
         calendarGrid.getStyleClass().add("calendar-grid");
         calendarGrid.setAlignment(Pos.CENTER);
