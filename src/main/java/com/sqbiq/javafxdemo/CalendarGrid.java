@@ -31,7 +31,12 @@ public class CalendarGrid extends GridPane {
     }
 
     public void setDisplayLocale(Locale locale) { displayLocale = locale; }
+
+    public Locale getDisplayLocale() { return displayLocale; }
+
     public void setDaysOfWeekLocale(Locale locale) { daysOfWeekLocale = locale; }
+
+    public Locale getDaysOfWeekLocale() { return daysOfWeekLocale; }
 
     static private Button getCell(String text) {
         Button cell = new Button(text);
