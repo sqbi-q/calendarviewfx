@@ -61,6 +61,10 @@ public class Calendar extends VBox {
         calendarGrid.setDaysOfWeekLocale(locale);
     }
 
+    public YearMonth getDate() {
+        return date;
+    }
+
     private void updateDate() {
         Month selectedMonth = monthSelect.getValue().getValue();
         Year selectedYear = yearSelect.getValue();
