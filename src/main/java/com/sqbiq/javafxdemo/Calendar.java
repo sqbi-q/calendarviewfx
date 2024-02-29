@@ -2,6 +2,7 @@ package com.sqbiq.javafxdemo;
 
 import com.sqbiq.javafxdemo.elements.MonthItem;
 import com.sqbiq.javafxdemo.elements.YearSelect;
+import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -20,18 +21,25 @@ public class Calendar extends VBox {
     private ComboBox<MonthItem> monthSelect = new ComboBox<MonthItem>();
 
     public Calendar() {
+        setAlignment(Pos.CENTER);
+
+        yearSelect.getStyleClass().add("year-select");
+        yearSelect.setAlignment(Pos.CENTER);
         getChildren().add(yearSelect);
 
         List<MonthItem> months = Arrays.stream(Month.values())
                 .map(month -> new MonthItem(month, Locale.getDefault()))
                 .toList();
 
+        monthSelect.getStyleClass().add("month-select");
         monthSelect.getItems().addAll(months);
         getChildren().add(monthSelect);
 
         // select default month
         monthSelect.getSelectionModel().select(new MonthItem(date.getMonth(), Locale.getDefault()));
 
+        calendarGrid.getStyleClass().add("calendar-grid");
+        calendarGrid.setAlignment(Pos.CENTER);
         calendarGrid.setDate(date);
         getChildren().add(calendarGrid);
 
@@ -39,6 +47,10 @@ public class Calendar extends VBox {
         yearSelect.addValueChangedListener(this::updateDate);
         monthSelect.valueProperty().addListener(
                 (obs, oldVal, newVal) -> updateDate());
+
+        // load stylesheet resource
+        String stylesheetRes = getClass().getResource("CalendarStylesheet.css").toExternalForm();
+        getStylesheets().add(stylesheetRes);
     }
 
     private void updateDate() {
