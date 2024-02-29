@@ -53,6 +53,14 @@ public class Calendar extends VBox {
         getStylesheets().add(stylesheetRes);
     }
 
+    public void setDisplayLocale(Locale locale) {
+        calendarGrid.setDisplayLocale(locale);
+    }
+
+    public void setDaysOfWeekLocale(Locale locale) {
+        calendarGrid.setDaysOfWeekLocale(locale);
+    }
+
     private void updateDate() {
         Month selectedMonth = monthSelect.getValue().getValue();
         Year selectedYear = yearSelect.getValue();
