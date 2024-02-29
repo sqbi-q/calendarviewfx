@@ -64,7 +64,7 @@ public class Calendar extends VBox {
     private void updateDate() {
         Month selectedMonth = monthSelect.getValue().getValue();
         Year selectedYear = yearSelect.getValue();
-        YearMonth selectedDate = YearMonth.of(selectedYear.getValue(), selectedMonth);
-        calendarGrid.setDate(selectedDate);
+        date = YearMonth.of(selectedYear.getValue(), selectedMonth);
+        calendarGrid.setDate(date);
     }
 }
