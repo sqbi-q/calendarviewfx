@@ -4,6 +4,7 @@ plugins {
     id 'org.javamodularity.moduleplugin' version '1.8.12'
     id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.25.0'
+    id 'com.github.johnrengelman.shadow' version "7.1.0"
 }
 
 group 'com.sqbiq'
@@ -54,4 +55,11 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+tasks {
+    shadowJar {
+        application.mainClass.set("com.sqbiq.javafxdemo.Launcher")
+        exclude("module-info.class")
+    }
 }
