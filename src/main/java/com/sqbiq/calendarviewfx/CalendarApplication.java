@@ -1,19 +1,10 @@
-package com.sqbiq.javafxdemo;
+package com.sqbiq.calendarviewfx;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.TextStyle;
-import java.time.temporal.WeekFields;
-import java.util.Locale;
 
 public class CalendarApplication extends Application {
     @Override

@@ -1,4 +1,4 @@
-package com.sqbiq.javafxdemo.elements;
+package com.sqbiq.calendarviewfx.elements;
 
 import java.time.Month;
 import java.time.format.TextStyle;

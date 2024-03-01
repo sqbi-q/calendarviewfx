@@ -1,4 +1,4 @@
-package com.sqbiq.javafxdemo.elements;
+package com.sqbiq.calendarviewfx.elements;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;

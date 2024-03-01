@@ -1,11 +1,10 @@
-package com.sqbiq.javafxdemo;
+package com.sqbiq.calendarviewfx;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.time.temporal.WeekFields;

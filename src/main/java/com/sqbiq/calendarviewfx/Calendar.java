@@ -1,11 +1,10 @@
-package com.sqbiq.javafxdemo;
+package com.sqbiq.calendarviewfx;
 
-import com.sqbiq.javafxdemo.elements.MonthItem;
-import com.sqbiq.javafxdemo.elements.YearSelect;
+import com.sqbiq.calendarviewfx.elements.MonthItem;
+import com.sqbiq.calendarviewfx.elements.YearSelect;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.time.Month;
 import java.time.Year;

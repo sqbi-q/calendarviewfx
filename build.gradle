@@ -26,8 +26,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'com.sqbiq.javafxdemo'
-    mainClass = 'com.sqbiq.javafxdemo.CalendarApplication'
+    mainModule = 'com.sqbiq.calendarviewfx'
+    mainClass = 'com.sqbiq.calendarviewfx.CalendarApplication'
 }
 
 javafx {
@@ -59,7 +59,7 @@ jlinkZip {
 
 tasks {
     shadowJar {
-        application.mainClass.set("com.sqbiq.javafxdemo.Launcher")
+        application.mainClass.set("com.sqbiq.calendarviewfx.Launcher")
         exclude("module-info.class")
     }
 }

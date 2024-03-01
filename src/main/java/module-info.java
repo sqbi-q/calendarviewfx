@@ -1,5 +1,5 @@
-module com.sqbiq.javafxdemo {
+module com.sqbiq.calendarviewfx {
     requires javafx.controls;
 
-    exports com.sqbiq.javafxdemo;
+    exports com.sqbiq.calendarviewfx;
 }

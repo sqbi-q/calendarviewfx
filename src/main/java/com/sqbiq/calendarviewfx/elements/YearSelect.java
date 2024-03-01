@@ -1,8 +1,6 @@
-package com.sqbiq.javafxdemo.elements;
+package com.sqbiq.calendarviewfx.elements;
 
-import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 import java.time.Year;
