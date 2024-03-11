@@ -5,7 +5,6 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.25.0'
     id 'com.github.johnrengelman.shadow' version "7.1.0"
-    id 'maven-publish'
 }
 
 group 'com.sqbiq'
@@ -63,8 +62,4 @@ tasks {
         application.mainClass.set("com.sqbiq.calendarviewfx.Launcher")
         exclude("module-info.class")
     }
-}
-
-artifacts {
-    archives shadowJar
 }
