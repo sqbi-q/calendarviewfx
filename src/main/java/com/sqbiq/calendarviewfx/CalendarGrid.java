@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class CalendarGrid extends GridPane {
@@ -17,6 +19,8 @@ public class CalendarGrid extends GridPane {
 
     private Locale displayLocale = Locale.getDefault();
     private Locale daysOfWeekLocale = Locale.getDefault();
+
+    private List<Button> dateCells = new ArrayList<>();
 
     final WeekFields daysOfWeek = WeekFields.of(daysOfWeekLocale);
 
@@ -36,6 +40,10 @@ public class CalendarGrid extends GridPane {
     public void setDaysOfWeekLocale(Locale locale) { daysOfWeekLocale = locale; }
 
     public Locale getDaysOfWeekLocale() { return daysOfWeekLocale; }
+
+    public List<Button> getDateCells() {
+        return dateCells;
+    }
 
     static private Button getCell(String text) {
         Button cell = new Button(text);
@@ -78,7 +86,8 @@ public class CalendarGrid extends GridPane {
             int cellCol = cell_i % 7;
             int cellRow = cell_i / 7;
             String day = Integer.toString(monthly.getDayOfMonth());
-            add(getCell(day), cellCol, cellRow+1);
+            dateCells.add(getCell(day));
+            add(dateCells.get(cellCount), cellCol, cellRow+1);
             monthly = monthly.plusDays(1);
         }
     }

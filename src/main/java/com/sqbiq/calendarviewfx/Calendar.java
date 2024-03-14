@@ -64,6 +64,10 @@ public class Calendar extends VBox {
         return date;
     }
 
+    public CalendarGrid getCalendarGrid() {
+        return calendarGrid;
+    }
+
     private void updateDate() {
         Month selectedMonth = monthSelect.getValue().getValue();
         Year selectedYear = yearSelect.getValue();
