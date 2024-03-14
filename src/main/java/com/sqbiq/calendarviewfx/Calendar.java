@@ -9,15 +9,19 @@ import javafx.scene.layout.VBox;
 import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class Calendar extends VBox {
     private YearMonth date = YearMonth.now();
     private CalendarGrid calendarGrid = new CalendarGrid();
     private YearSelect yearSelect = new YearSelect(Year.from(date));
     private ComboBox<MonthItem> monthSelect = new ComboBox<MonthItem>();
+
+    private final List<DateChangeListener> dateChangeListeners = new ArrayList<>();
+
+    public interface DateChangeListener extends EventListener {
+        void changed();
+    }
 
     public Calendar() {
         setAlignment(Pos.CENTER);
@@ -68,10 +72,19 @@ public class Calendar extends VBox {
         return calendarGrid;
     }
 
+    public void addChangeDateListener(DateChangeListener onDateChange) {
+        dateChangeListeners.add(onDateChange);
+    }
+
+    public void removeChangeDateListener(DateChangeListener onDateChange) {
+        dateChangeListeners.remove(onDateChange);
+    }
+
     private void updateDate() {
         Month selectedMonth = monthSelect.getValue().getValue();
         Year selectedYear = yearSelect.getValue();
         date = YearMonth.of(selectedYear.getValue(), selectedMonth);
         calendarGrid.setDate(date);
+        dateChangeListeners.forEach(listener -> listener.changed());
     }
 }
